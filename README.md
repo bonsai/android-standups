@@ -1,228 +1,200 @@
 # android-standups
 
-アンドロイドによるブラック・スタンドアップコメディを題材に、**笑いを分析・説明・生成・測定するエージェント**を研究する。
+アンドロイドによるスタンドアップ／漫才を題材に、**なぜ面白いのかを説明し、面白い台本を書くエンジンを自律進化させる**研究・制作プロジェクト。
 
-> **AIが思考して、人間が行動する。**
+> **AIが思考し、人間が行動する。人間もAIも、笑いを知る。**
 
 ## 全体の地図
 
 ```text
-PLAN
+1-PLAN
   ↓
-IMPLEMENT
+2-IMPLEMENT
   ↓
 EXPERIMENT
   ↓
-PAPER
-  ↺ 新しい仮説へ
+3-PAPER
+  ↓
+新しい仮説
+  └────────────→ 1-PLAN
 ```
 
-### PLAN — 何を考えるか
+## 目的
 
-問い、仮説、Comedy Ontology、MicroSkill、Comedy Knife、実験設計を定義する。
-
-### IMPLEMENT — どう分析・生成するか
-
-分析・生成エージェントを構築する。
-
-### EXPERIMENT — 実際に何が起きたか
-
-生成した台本、既存作品の分析、人間評価、データ、結果、反例を保存する。
-
-### PAPER — 何が分かったか
-
-実験結果から論文を構成し、結果を次の仮説へ戻す。
+1. 面白い台本を書く。
+2. 面白い台本を書くエンジンそのものを進化させる。
+3. なぜ面白いのか、どうすれば笑いをとれるのかを、人間にもAIにも伝える。
+4. 原理・哲学からOntology、MicroSkill、評価器、エージェントまで一貫して実装する。
 
 ## 中心仮説
 
 > **笑いは秩序のボーダーの発見器である。**
 
-人間は暗黙の秩序・規範・期待を形成する。その境界からの認識可能な逸脱が「おかしい」として認識され、条件によって笑いへ変換されるのではないか、という仮説を検証する。
+ただし仮説は固定しない。支持・反証・不確実・分岐を世代管理する。
 
-仮説を正しいものとして扱わない。支持・反証・不確実を同じ実験データとして残す。
+## 基本モデル
 
-## Comedy Knife
+```text
+World Knowledge
+      ↓
+Order
+      ↓
+Premise
+      ↓
+Expectation
+      ↓
+Actual
+      ↓
+Deviation
+      ↓
+Why Funny?
+```
 
-「面白い／面白くない」で終わらせず、言葉を切り分ける。
+面白さを「面白い／面白くない」の一発判定にしない。
+
+> **何が、何から、どの方向へ、どれだけズレたのか。**
+
+を切り分ける。
+
+## Why-Funny Evaluator
+
+最初に作るべき中核は生成器ではなく評価器。
 
 ```text
 発話
  ↓
 意味
  ↓
-文脈
+世界知識
  ↓
 秩序
  ↓
+前提
+ ↓
 期待
  ↓
-逸脱
+実際の解釈
+ ↓
+ズレ
  ↓
 境界距離
  ↓
-Mechanism
+意外性 / 理解可能性
  ↓
-MicroSkill
- ↓
-Modality
- ↓
-Audience Reaction
+笑いの可能性
 ```
 
-## Comedy Ontology
+### 青りんごケース
 
-笑いを、ジャンルではなく構造として記述する。
+「青りんご」を文字通り `blue apple` と解釈するAIと、人間の慣用的な世界知識による `green apple` の差は、Human-AI World Model Gapの実験ケースになる。
 
 ```text
-Order
-Expectation
-Boundary
-Violation
-Mechanism
-MicroSkill
-Modality
-Reaction
+literal interpretation
+        ↕
+   human convention
+        ↓
+     deviation
 ```
 
-対象には、スタンドアップ、漫才、身体的な笑い、赤ちゃんの予想外の行動、おなら、転倒、毒舌、アンドロイド×人間などを含める。ただし、対象ごとの差異を実験で検証する。
+## Comedy Knife
 
-## MicroSkill
+言葉を切るナイフとして、Order / Expectation / Boundary / Deviation / Mechanism / MicroSkill / Modality / Reactionを追跡する。
 
-コメディ技法を再利用可能な小さな技能へ分解する。
+## MicroSkill / Modality
 
-```text
-setup
-expectation
-misdirection
-contrast
-incongruity
-exaggeration
-understatement
-literal_interpretation
-punchline
-callback
-escalation
-```
+Setup、Misdirection、Incongruity、Exaggeration、Understatement、Literal Interpretation、Punchline、Callbackなどを再利用可能なMicroSkillとして記述する。
 
-Phase 1ではScript中心。Phase 2で顔、声、間、視線、ジェスチャー、身体動作などのNon-Verbal Ontologyを追加する。
+Modalityとは分離して、semantic / social / physical / bodily / innocence / absurd / observationalなどを系列として扱う。
 
-## Stand-up / Manzai
+Phase 1はScript中心。Phase 2で顔、声、間、視線、ジェスチャー、身体動作などのNon-Verbal Ontologyへ拡張する。
 
-スタンドアップでは一人の話者が観客の期待を制御する。
-
-漫才では、ボケとツッコミを人格ではなく機能として分析する。
-
-```text
-Boke
- ↓
-Expectation Violation
- ↓
-Tsukkomi
- ↓
-Recognition / Restoration
- ↓
-Audience
-```
-
-さらに、**Android × Human**を研究用の実演形式として扱う。
-
-```text
-Human: emotion / intuition / social convention
-Android: logic / classification / literal interpretation
-```
-
-この非対称性が、人間社会の暗黙の秩序を可視化できるかを検証する。
-
-## エージェントの研究ループ
+## 自律進化するエージェント
 
 ```text
 Hypothesis
  ↓
-Ontology / MicroSkill
+Planner
  ↓
-Script Agent
+Writer
  ↓
-Candidate A/B/C
+Analyzer
  ↓
-Human Evaluation
+Evaluator
  ↓
-Quantification
+Critic
  ↓
-Counterexample
+Engine Evolution
  ↓
-Hypothesis Update
- ↺
+Version N+1
+ └──────────────↺
 ```
 
-AI自身の評価だけで閉じず、人間の評価を実験データとしてループへ戻す。
+人間は常時ループに入らず、Sparse Human Oversightとして周期的に視聴・評価・意見を提供する。人間の評価もAIの自己評価も実験データとして扱う。
 
-## 研究データ
-
-候補ごとに、例えば以下を記録する。
+## 仮説の世代管理
 
 ```text
-experiment_id
-script_id
-hypothesis_id
-modality
-micro_skill_sequence
-order_strength
-boundary_distance
-expectation_strength
-violation_strength
-funny_score
-understandable_score
-originality_score
-human_comment
+H-001
+  ↓
+H-002
+  ↓
+H-003
+ ├── H-003a
+ ├── H-003b
+ └── H-003c
 ```
 
-**面白くなかった結果も重要なデータである。**
+成功だけでなく失敗・反例・評価者間不一致を残し、Git履歴とともにエンジン進化の理由を追跡する。
 
 ## リポジトリ構造
-
-README以外の研究ドキュメントは原則 `plan/` に置き、生成物・実験結果は `experiments/` に押し込む。構造は小さく保ち、必要になった時点で内部を再構成する。
 
 ```text
 android-standups/
 ├── README.md
-├── plan/                 # 仮説・設計・Ontology・MicroSkill・論文計画
-└── experiments/          # 台本・分析・評価・データ・結果
+├── 1-plan/
+│   ├── rule.md
+│   └── research-direction.md
+├── 2-implement/
+│   ├── engine/
+│   │   ├── agent/
+│   │   ├── analyzer/
+│   │   ├── ontology/
+│   │   ├── skills/
+│   │   └── workflow.md
+│   └── experiments/
+│       ├── scripts/
+│       └── evaluator-cases/
+└── 3-paper/
+    └── skeleton.md
 ```
 
-## 開発原則
+### 役割
 
-1. **計画と生成物を分離する。**
-2. **既存作品は実験資産として扱う。**
-3. **Phase 1はScript、Phase 2はNon-Verbal。**
-4. **A/B実験で変数をできるだけ制御する。**
-5. **失敗・反例を捨てない。**
-6. **観察と解釈を分離する。**
-7. **AIの自己評価を最終結果としない。**
-8. **実験結果から仮説を更新する。**
-9. **論文は結果から書く。**
+- `1-plan` — 原理、仮説、研究計画、ルール
+- `2-implement/engine` — LLMが読む実装知識。原則Markdown
+- `2-implement/experiments` — 生成物、評価ケース、実験結果
+- `3-paper` — 実験から論文化
+- `README.md` — 全体の地図
 
-## 長期目標
+フォルダは工程を表し、ファイル名は内容を表す。増殖した場合もまず分類軸を増やすのではなく、既存ファイルの属性を見直す。
+
+## 研究から論文へ
 
 ```text
-Analyze
+計画
  ↓
-Explain
+実装
  ↓
-Generate
+実験
  ↓
-Measure
+評価
  ↓
-Learn
+仮説更新
  ↓
-Perform
+論文
  ↓
-Measure again
+新しい仮説
+ ↺
 ```
 
-最終的には、AIが「面白い」と言うだけでなく、**どの秩序を前提に、どの境界を、どのMicroSkillで越えたため笑いが発生したと考えるのか**を説明できるComedy Agentを目指す。
-
-## 地図
-
-- `plan/` — 研究を考える場所
-- `experiments/` — 実際に生成・観測・評価する場所
-- `README.md` — このプロジェクト全体の地図
+最終的な強みは、**原理・哲学 → 世界知識 → Ontology → 評価 → MicroSkill → エージェント → 実験 → 論文**を一本につなぐことにある。
