@@ -47,3 +47,5 @@ Human reaction data: pending.
 AI evaluation data: pending.
 
 MediaPipe physical observation: not used in Phase 1.
+
+→ RQ01b-controlled で baseline vs integrated の対照実験を開始(6 本生成・AI 評価済み)。本 RQ01 生成物は integrated 条件の PoC 標本として位置づけを維持。

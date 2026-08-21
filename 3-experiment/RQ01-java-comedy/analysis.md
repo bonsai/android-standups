@@ -45,3 +45,5 @@ Prioritize:
 ## Next step
 
 Run a controlled baseline-vs-integrated experiment with multiple scripts generated from matched seeds.
+
+→ 実施済み: [RQ01b-controlled](../RQ01b-controlled/design.md)。3 シード × 2 条件の 6 本を生成し、構造評価・AI 評価・失敗保全を完了。人間 laughter データは pending。
