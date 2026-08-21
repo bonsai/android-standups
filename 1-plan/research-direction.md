@@ -14,6 +14,8 @@ The project therefore spans philosophy → world knowledge → ontology → engi
 
 > **Humor is a detector of the boundary of order.**
 
+> **H-001r:** The boundary is discoverable only through its violation (やぶれ). Laughter discovers the boundary of order; the breach makes the boundary visible.
+
 The working hypothesis is not treated as truth. Each generation of experiments may support, refute, branch, or revise it.
 
 ## Core mechanism

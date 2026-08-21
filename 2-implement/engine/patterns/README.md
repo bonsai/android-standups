@@ -33,6 +33,7 @@ MicroSkill (skills/) = 操作(実装)      …「どう操作したか」
 
 | 型 | 確度 | 対応 MicroSkill | 主な証拠 |
 |----|------|------------------|----------|
+| **[やぶれ(マスター型)](order-breach.md)** | B | (全型の枠組み) | H-001 + RQ01b deviation/surprise |
 | [不一致-解決](incongruity-resolution.md) | A | misdirection, incongruity | 文献確立 + RQ01b deviation/surprise |
 | [優越](superiority.md) | A | exaggeration, deadpan | 文献確立 + RQ01 全般 |
 | [解放](relief.md) | A | pause, post-punch-silence | 文献確立(身体側は Phase 2) |

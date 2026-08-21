@@ -11,6 +11,12 @@ Working hypotheses. Not established results.
 
 > Humor may function as a detector of the boundary of an established order.
 
+**Refinement H-001r (ya-bure):** The boundary is discoverable only through its violation (やぶれ). The deviation event is the やぶれ: at the moment the boundary is breached, it becomes visible, and laughter marks that discovery.
+
+```text
+Order → Boundary (invisible) → Breach (ya-bure) → Discovery → Laughter
+```
+
 The strong form is a philosophical research hypothesis and must remain falsifiable through operational definitions and experiments.
 
 ## Starting model

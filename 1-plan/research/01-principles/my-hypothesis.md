@@ -8,6 +8,12 @@ Humor may arise when a recognizable expectation is violated by a measurable devi
 
 Humor may function as a detector of the boundary of an established order.
 
+Refinement H-001r (ya-bure): the boundary is discoverable only through its violation (やぶれ). The deviation event is the breach; the breach makes the boundary visible, and laughter marks the discovery.
+
+```text
+Order → Boundary → Breach (ya-bure) → Discovery → Laughter
+```
+
 ## Research target
 
 Identify, represent, and measure the boundary between unexpectedness and humor.
